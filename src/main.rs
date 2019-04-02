@@ -1,6 +1,7 @@
 
 #[macro_use]
 extern crate lazy_static;
+extern crate regex;
 
 mod graphics;
 mod strings;
@@ -14,7 +15,11 @@ fn main() {
 
     let search_string = get_search_string();
 
+    let mut hint = prepare(&search_string);
+
     loop {
+        println!("Search string [{}] and hint [{}]\n", search_string, hint);
+
         let mut line = String::new();
         println!("Type something: ");
         match std::io::stdin().read_line(&mut line) {

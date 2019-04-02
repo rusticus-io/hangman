@@ -1,4 +1,6 @@
 
+use regex::Regex;
+
 pub fn get_first_unicode_char(s: &str) -> (&str, &str) {
 
     for i in 1..5 {
@@ -10,4 +12,9 @@ pub fn get_first_unicode_char(s: &str) -> (&str, &str) {
 
 pub fn get_search_string() -> String {
     String::from("HANGMAN")
+}
+
+pub fn prepare(s: &str) -> String {
+    let re = Regex::new(r".").expect("Can't create regular expression");
+    re.replace_all(s, "_").to_string()
 }
