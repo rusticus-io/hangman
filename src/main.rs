@@ -17,6 +17,8 @@ fn main() {
 
     let mut hint = prepare(&search_string);
 
+    let mut character_matches = "".to_string();
+
     loop {
         println!("Search string [{}] and hint [{}]\n", search_string, hint);
 
@@ -45,10 +47,14 @@ fn main() {
         // notice head is now of type String, not &str
 
         if find_char_in_string(&head, &search_string) {
-            println!("** Character hit! **\n")
+            println!("** Character hit! **\n");
+            if !find_char_in_string(&head, &character_matches) {
+                character_matches.push_str(&head);
+                println!("** Already matched characters: {}\n", &character_matches);
+            }
         }
         else {
-            println!("** Character miss! **\n")
+            println!("** Character miss! **\n");
         }
 
         println!("first char: {}\nremainder: {}", &head, remainder);
