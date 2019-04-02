@@ -22,6 +22,11 @@ fn main() {
     loop {
         println!("Search string [{}] and hint [{}]\n", search_string, hint);
 
+        if search_string.eq(&hint) {
+            println!("you win.");
+            break;
+        }
+
         let mut line = String::new();
         println!("Type something: ");
         match std::io::stdin().read_line(&mut line) {
@@ -30,11 +35,6 @@ fn main() {
         }
 
         let line = line.trim();
-
-        if search_string.eq(line) {
-            println!("you win.");
-            break;
-        }
 
         if "quit".eq(line) {
             println!("bye.");
@@ -50,6 +50,7 @@ fn main() {
             println!("** Character hit! **\n");
             if !find_char_in_string(&head, &character_matches) {
                 character_matches.push_str(&head);
+                hint = create_hint(&search_string, &character_matches);
                 println!("** Already matched characters: {}\n", &character_matches);
             }
         }
