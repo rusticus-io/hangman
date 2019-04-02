@@ -12,14 +12,21 @@ fn main() {
     let state = Splash;
     GRAPHICS.get(&state).unwrap().draw();
 
-    let mut line = String::new();
-    println!("Type something: ");
-    match std::io::stdin().read_line(&mut line) {
-        Ok(_) => println!("You typed: {}", &line),
-        _ => eprintln!("Can't process your entry"),
+    loop {
+        let mut line = String::new();
+        println!("Type something: ");
+        match std::io::stdin().read_line(&mut line) {
+            Ok(_) => println!("You typed: {}", &line),
+            _ => eprintln!("Can't process your entry"),
+        }
+
+        if "quit".eq(line.trim()) {
+            println!("bye.");
+            break;
+        }
+
+        let(head, remainder) = get_first_unicode_char(&line);
+
+        println!("first char: {}\nremainder: {}", head, remainder);
     }
-
-    let(head, remainder) = get_first_unicode_char(&line);
-
-    println!("first char: {}\nremainder: {}", head, remainder);
 }
