@@ -7,3 +7,7 @@ pub fn get_first_unicode_char(s: &str) -> (&str, &str) {
 
     (&s[0..0], s)
 }
+
+pub fn get_search_string() -> String {
+    String::from("HANGMAN")
+}
