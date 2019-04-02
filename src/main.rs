@@ -3,8 +3,10 @@
 extern crate lazy_static;
 
 mod graphics;
+mod strings;
 
 use graphics::{*, Hangman::*};
+use strings::*;
 
 fn main() {
     let state = Splash;
@@ -16,4 +18,8 @@ fn main() {
         Ok(_) => println!("You typed: {}", &line),
         _ => eprintln!("Can't process your entry"),
     }
+
+    let(head, remainder) = get_first_unicode_char(&line);
+
+    println!("first char: {}\nremainder: {}", head, remainder);
 }
