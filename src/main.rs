@@ -19,11 +19,18 @@ fn main() {
 
     let mut character_matches = "".to_string();
 
+    let mut false_guesses = 0;
+
     loop {
         println!("Search string [{}] and hint [{}]\n", search_string, hint);
 
         if search_string.eq(&hint) {
             println!("you win.");
+            break;
+        }
+
+        if false_guesses == 7 {
+            println!("you loose.");
             break;
         }
 
@@ -48,7 +55,10 @@ fn main() {
 
         if find_char_in_string(&head, &search_string) {
             println!("** Character hit! **\n");
-            if !find_char_in_string(&head, &character_matches) {
+            if find_char_in_string(&head, &character_matches) {
+                false_guesses += 1;
+            }
+            else {
                 character_matches.push_str(&head);
                 hint = create_hint(&search_string, &character_matches);
                 println!("** Already matched characters: {}\n", &character_matches);
@@ -56,6 +66,7 @@ fn main() {
         }
         else {
             println!("** Character miss! **\n");
+            false_guesses += 1;
         }
 
         println!("first char: {}\nremainder: {}", &head, remainder);
