@@ -27,6 +27,9 @@ fn main() {
 
         let(head, remainder) = get_first_unicode_char(&line);
 
-        println!("first char: {}\nremainder: {}", head, remainder);
+        let head = head.to_uppercase();
+        // notice head is now of type String, not &str
+
+        println!("first char: {}\nremainder: {}", &head, remainder);
     }
 }
