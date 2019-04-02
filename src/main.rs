@@ -44,6 +44,13 @@ fn main() {
         let head = head.to_uppercase();
         // notice head is now of type String, not &str
 
+        if find_char_in_string(&head, &search_string) {
+            println!("** Character hit! **\n")
+        }
+        else {
+            println!("** Character miss! **\n")
+        }
+
         println!("first char: {}\nremainder: {}", &head, remainder);
     }
 }
