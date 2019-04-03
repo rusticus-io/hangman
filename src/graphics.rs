@@ -1,5 +1,6 @@
 
 use std::collections::HashMap;
+use super::strings::len_of_string;
 
 #[derive(Debug, Eq, PartialEq, Hash)]
 pub enum Hangman {
@@ -19,12 +20,23 @@ impl Graphic {
         Graphic(graphic.to_string())
     }
 
-    fn draw(&self) {
-        println!("{}", self.0);
+    fn draw(&self, hint: &str) {
+
+        let hint_len = len_of_string(hint);
+        let spare_len = 23 - hint_len;
+
+        let mut replacement = hint.to_string();
+        
+        replacement.push_str(&((&" ").repeat(spare_len as usize)));
+        
+        let image =
+            self.0.replace(".".repeat(23).as_str(), &replacement);
+
+        println!("{}", image);
     }
 
-    pub fn display(state: &Hangman) {
-        GRAPHICS.get(state).unwrap().draw();
+    pub fn display(state: &Hangman, hint: &str) {
+        GRAPHICS.get(state).unwrap().draw(hint);
     }
 }
 

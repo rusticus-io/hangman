@@ -21,7 +21,7 @@ fn main() {
     let mut false_guesses = 0;
 
     loop {
-        Graphic::display(&state);
+        Graphic::display(&state, &hint);
 
         println!("Search string [{}] and hint [{}]\n", search_string, hint);
 
@@ -75,7 +75,7 @@ fn main() {
         }
     }
 
-    Graphic::display(&state);
+    Graphic::display(&state, &hint);
 
     println!("\nSearched word is {}", search_string);
     println!("\n____________________________________________________________\n");

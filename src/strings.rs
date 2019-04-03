@@ -43,6 +43,13 @@ pub fn create_hint(search_string: &str, already_matched: &str) -> String {
     }
 }
 
+pub fn len_of_string(s: &str) -> i32 {
+    let (head, rest) = get_first_unicode_char(s);
+    if head.eq("") && rest.eq("") { 0 }
+    else if rest.eq("") { 1 }
+    else {1 + len_of_string(rest) }
+}
+
 #[cfg(test)]
 mod test {
 
@@ -63,4 +70,12 @@ mod test {
         assert_eq!("_all_", create_hint("hallo", "la").as_str());
         assert_eq!("hallo", create_hint("hallo", "hola").as_str());
     }
+
+    #[test]
+    fn test_len_of_string() {
+        assert_eq!(0, len_of_string(""));
+        assert_eq!(5, len_of_string("hallo"));
+        assert_eq!(3, len_of_string("olá"));
+    }
+
 }
