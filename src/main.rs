@@ -10,8 +10,7 @@ use graphics::{*, Hangman::*};
 use strings::*;
 
 fn main() {
-    let state = Splash;
-    GRAPHICS.get(&state).unwrap().draw();
+    let mut state = Splash;
 
     let search_string = get_search_string();
 
@@ -22,6 +21,8 @@ fn main() {
     let mut false_guesses = 0;
 
     loop {
+        Graphic::display(&state);
+
         println!("Search string [{}] and hint [{}]\n", search_string, hint);
 
         if search_string.eq(&hint) {

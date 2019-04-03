@@ -18,8 +18,12 @@ impl Graphic {
         Graphic(graphic.to_string())
     }
 
-    pub fn draw(&self) {
+    fn draw(&self) {
         println!("{}", self.0);
+    }
+
+    pub fn display(state: &Hangman) {
+        GRAPHICS.get(state).unwrap().draw();
     }
 }
 
