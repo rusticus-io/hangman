@@ -28,8 +28,11 @@ fn main() {
         let mut line = String::new();
         println!("Type something: ");
         match std::io::stdin().read_line(&mut line) {
-            Ok(_) => println!("You typed: {}", &line),
-            _ => eprintln!("Can't process your entry"),
+            Ok(_) => (),
+            _ => {
+                eprintln!("Can't process your entry");
+                continue;
+            },
         }
 
         let line = line.trim();
@@ -39,30 +42,27 @@ fn main() {
             break;
         }
 
-        let(head, remainder) = get_first_unicode_char(&line);
+        let(head, _) = get_first_unicode_char(&line);
 
         let head = head.to_uppercase();
         // notice head is now of type String, not &str
 
         if find_char_in_string(&head, &search_string) {
-            println!("** Character hit! **\n");
             if find_char_in_string(&head, &character_matches) {
+                println!("** G R E A T **\n");
                 false_guesses += 1;
             }
             else {
                 character_matches.push_str(&head);
                 hint = create_hint(&search_string, &character_matches);
-                println!("** Already matched characters: {}\n", &character_matches);
             }
         }
         else {
-            println!("** Character miss! **\n");
+            println!("** M I S S **\n");
             false_guesses += 1;
         }
 
         state = Hangman::Error(false_guesses);
-
-        println!("first char: {}\nremainder: {}", &head, remainder);
 
         if search_string.eq(&hint) {
             state = Hangman::Win(false_guesses);
