@@ -49,12 +49,12 @@ fn main() {
 
         if find_char_in_string(&head, &search_string) {
             if find_char_in_string(&head, &character_matches) {
-                println!("** G R E A T **\n");
                 false_guesses += 1;
             }
             else {
                 character_matches.push_str(&head);
                 hint = create_hint(&search_string, &character_matches);
+                println!("** G R E A T **\n");
             }
         }
         else {
