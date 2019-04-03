@@ -76,4 +76,7 @@ fn main() {
     }
 
     Graphic::display(&state);
+
+    println!("\nSearched word is {}", search_string);
+    println!("\n____________________________________________________________\n");
 }
