@@ -25,16 +25,6 @@ fn main() {
 
         println!("Search string [{}] and hint [{}]\n", search_string, hint);
 
-        if search_string.eq(&hint) {
-            println!("you win.");
-            break;
-        }
-
-        if false_guesses == 7 {
-            println!("you loose.");
-            break;
-        }
-
         let mut line = String::new();
         println!("Type something: ");
         match std::io::stdin().read_line(&mut line) {
@@ -70,6 +60,20 @@ fn main() {
             false_guesses += 1;
         }
 
+        state = Hangman::Error(false_guesses);
+
         println!("first char: {}\nremainder: {}", &head, remainder);
+
+        if search_string.eq(&hint) {
+            state = Hangman::Win(false_guesses);
+            break;
+        }
+
+        if false_guesses == 7 {
+            state = Hangman::Loose;
+            break;
+        }
     }
+
+    Graphic::display(&state);
 }
