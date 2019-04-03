@@ -35,7 +35,7 @@ fn main() {
         let line = line.trim();
 
         if "quit".eq(line) {
-            println!("bye.");
+            state = Hangman::Bye(false_guesses);
             break;
         }
 
