@@ -23,8 +23,6 @@ fn main() {
     loop {
         Graphic::display(&state, &hint);
 
-        println!("Search string [{}] and hint [{}]\n", search_string, hint);
-
         let mut line = String::new();
         println!("Type something: ");
         match std::io::stdin().read_line(&mut line) {
