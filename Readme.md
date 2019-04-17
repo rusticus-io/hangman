@@ -29,7 +29,7 @@ I also assume, you already have run an executable like the `hello world` program
 
 I strongly recommend to install `clippy`.
 
-```> cargo install cargo-clippy```
+```> rustup component add clippy```
 
 It is a linter and gives you hints to optimize your source code.
 
