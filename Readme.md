@@ -1,3 +1,5 @@
+_This tutorial was part of a whorkshop which took place at the [Rust Community Stuttgart](https://www.meetup.com/de-DE/Rust-Community-Stuttgart/) on April, 17th 2019._
+
 # Hangman Game Development Tutorial
 
 We will develop a Hangman text based console game within this tutorial.
