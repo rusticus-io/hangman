@@ -21,7 +21,7 @@ Just implement as many additional `println!()` statements to see helpful message
 I assume, you're familiar with `git`.
 
 I recommend you to have [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/) installed.
-When you this IDE, make sure you have the Rust plugin installed.
+When you use this IDE, make sure you have the Rust plugin installed.
 
 This IDE in combination with the Rust plugin is very powerful and makes coding really easy.
 
@@ -73,6 +73,7 @@ We are going to put all the string function in a separate module: `src/strings.r
 
 Rust uses UTF-8 encoded strings internally, but stores them into an 8-bit vector `Vec<u8>`, which means that each character can possibly consume up to 5 bytes.
 
+```rust
 pub fn get_first_unicode_char(s: &str) -> (&str, &str) {
 
     for i in 1..5 {
@@ -81,6 +82,7 @@ pub fn get_first_unicode_char(s: &str) -> (&str, &str) {
 
     (&s[0..0], s)
 }
+```
 
 _HINT_:
 * Use this function in your `main.rs` to display the first character and the rest.
